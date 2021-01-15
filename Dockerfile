@@ -12,6 +12,7 @@ RUN npm run build
 # /app/build is all the folder we need
 
 FROM nginx
+
 COPY --from=builder /app/build /usr/share/nginx/html
 
 #nginx build'i içinde default olarak start komutu olduğundan biz bi daha başlatmıyoruz.
