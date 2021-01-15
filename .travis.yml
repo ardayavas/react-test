@@ -1,0 +1,9 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t ardayavas/react-test -f Dockerfile.dev .
+
+script:
+ - docker run ardayavas/react-test npm run test -- --coverage
