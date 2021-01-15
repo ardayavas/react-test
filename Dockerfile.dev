@@ -1,0 +1,25 @@
+FROM node:alpine
+
+WORKDIR /app
+
+COPY package.json .
+RUN npm install
+
+# volume'u ref verdigimiz icin bunu silebliriz ama bırakmak daha iyi.
+# çünkü bu dosyayı production'da da kullanmak isteyebiliriz.
+COPY . .
+
+CMD ["npm", "run", "start"]
+
+
+# docker build -f Dockerfile.dev .
+# docker run -p 8080:3000 120ef1e63af6
+#LOCAL DIR'i maplemek için:
+# : yoksa volume içinde placeholder oluyor.
+# docker run -p 8080:3000 -v /app/node_modules -v $(pwd):/app 120ef1e63af6
+
+# from Powershell
+#  docker run -it -p 8080:3000 -v /app/node_modules -v ${pwd}:/app 6015a853cafb   
+
+# Testleri koşmak için:
+#docker run -it 2fefbc5567e8 npm run test
